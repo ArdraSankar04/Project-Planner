@@ -1,0 +1,153 @@
+### list all projects
+GET http://127.0.0.1:8000/projects/
+
+### create a project
+POST http://127.0.0.1:8000/projects/
+Content-Type: multipart/form-data; boundary=abc
+
+--abc
+Content-Disposition: form-data; name="name"
+
+BookNest - Online Library Management System
+--abc
+Content-Disposition: form-data; name="description"
+
+<h2>BookNest - Online Library Management System</h2>
+
+<p>
+BookNest is a comprehensive Django-based Online Library Management System designed
+to streamline book catalog management, member registration, borrowing workflows,
+reservations, and reporting. The platform provides role-based access for administrators,
+librarians, and members, enabling efficient library operations through a modern
+web interface and RESTful APIs.
+</p>
+
+<h3>Key Features</h3>
+<ul>
+    <li>User Authentication & Authorization</li>
+    <li>Book and Category Management</li>
+    <li>ISBN Tracking and Inventory Control</li>
+    <li>Borrow and Return Management</li>
+    <li>Book Reservation System</li>
+    <li>Advanced Search & Filtering</li>
+    <li>User Reviews and Ratings</li>
+    <li>Admin Dashboard with Analytics</li>
+    <li>Django REST Framework API Support</li>
+    <li>CKEditor-based Content Management</li>
+</ul>
+
+<h3>Technology Stack</h3>
+<ul>
+    <li>Django</li>
+    <li>Django REST Framework</li>
+    <li>MySQL</li>
+    <li>Bootstrap 5</li>
+    <li>CKEditor 5</li>
+    <li>JWT Authentication</li>
+</ul>
+
+<h3>Benefits</h3>
+<p>
+BookNest improves operational efficiency, simplifies inventory tracking,
+enhances user experience, and provides detailed reports for better decision-making.
+</p>
+--abc
+Content-Disposition: form-data; name="document"; filename="booknestdoc.pdf"
+Content-Type: application/pdf
+
+< C:\Users\Remya venu\Downloads\booknestdoc.pdf
+--abc--
+
+### retrieve a project
+GET http://127.0.0.1:8000/projects/9ded7f1f-5345-4377-9576-1f422b37b089/
+
+###update a project
+PATCH http://127.0.0.1:8000/projects/9ded7f1f-5345-4377-9576-1f422b37b089/
+Content-Type: multipart/form-data;boundary=abc
+
+--abc
+Content-Disposition: form-data; name="name"
+
+SkillBridge-A Learning Platform
+--abc--
+
+### soft delete a project
+DELETE  http://127.0.0.1:8000/projects/9ded7f1f-5345-4377-9576-1f422b37b089/
+
+
+### list all assigned projects
+GET http://127.0.0.1:8000/assigned-projects/
+
+### create an assigned project
+
+POST http://127.0.0.1:8000/assigned-projects/
+Content-Type: application/json
+
+{
+  "project": 2,
+  "coordinator": 4,
+  "developers": [6, 7],
+  "project_duration": 60,
+  "project_start_date": "2026-11-02",
+  "project_tentative_end_data": "2027-01-01"
+}
+
+
+### retrieve an assigned projects
+GET http://127.0.0.1:8000/assigned-projects/fa07246f-b1dd-448d-aa86-69f515de0745/
+
+
+### update an assigned project
+
+PATCH http://127.0.0.1:8000/assigned-projects/fa07246f-b1dd-448d-aa86-69f515de0745/
+Content-Type: application/json
+
+{
+  "developers": [6, 7]
+}
+
+
+### soft delete an assigned projects
+DELETE http://127.0.0.1:8000/assigned-projects/fa07246f-b1dd-448d-aa86-69f515de0745/
+
+
+# get task lists
+
+
+### retrieve an assigned projects
+GET http://127.0.0.1:8000/tasks/fa07246f-b1dd-448d-aa86-69f515de0745/
+
+
+### create a task
+POST http://127.0.0.1:8000/tasks/fa07246f-b1dd-448d-aa86-69f515de0745/
+Content-Type: application/json
+
+{
+  "assigned_to": 9,
+  "title": "Design the project dashboard",
+  "description": "Create the initial dashboard layout.",
+  "priority": "Medium"
+}
+
+
+### retrieve a task
+GET http://127.0.0.1:8000/tasks-retrieve-update-destroy/1f488a23-2544-4153-a621-a80752f53d87/
+
+
+### update a task
+PATCH  http://127.0.0.1:8000/tasks-retrieve-update-destroy/1f488a23-2544-4153-a621-a80752f53d87/
+Content-Type: application/json
+
+{
+ 
+  "duration": "02:00:00",
+  "start_date": "2026-11-06",
+  "end_date": "2026-11-07"
+}
+
+### delete a task
+DELETE http://127.0.0.1:8000/tasks-retrieve-update-destroy/1f488a23-2544-4153-a621-a80752f53d87/
+
+
+### generate a tasks by ai
+POST http://127.0.0.1:8000/generate-tasks/fa07246f-b1dd-448d-aa86-69f515de0745/
